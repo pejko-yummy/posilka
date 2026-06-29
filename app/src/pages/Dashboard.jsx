@@ -1,6 +1,7 @@
 import { useLocalStorage } from '../lib/useLocalStorage'
 import { calculateBmi, bmiCategory } from '../lib/bmi'
 import { isDayDone, computeStreak } from '../lib/checklist'
+import { photos, quoteOfTheDay } from '../data/images'
 import { Link } from 'react-router-dom'
 
 export default function Dashboard() {
@@ -45,8 +46,15 @@ export default function Dashboard() {
     <div>
       <h1 className="page-title">Ahoj! 👋</h1>
 
+      <div className="quote-card" style={{ backgroundImage: `url(${photos.groupWorkout})` }}>
+        <div>
+          <blockquote>"{quoteOfTheDay()}"</blockquote>
+          <cite>Motivácia na dnes</cite>
+        </div>
+      </div>
+
       <div className="hero-row">
-        <div className="hero-card variant-cyan">
+        <div className="hero-card has-photo" style={{ backgroundImage: `url(${photos.weights})` }}>
           <span className="hero-label">Tvoje BMI</span>
           {bmi ? (
             <div>
@@ -57,7 +65,7 @@ export default function Dashboard() {
             <div className="hero-sub">Zadaj výšku a váhu nižšie</div>
           )}
         </div>
-        <div className="hero-card variant-success">
+        <div className="hero-card has-photo" style={{ backgroundImage: `url(${photos.running})` }}>
           <span className="hero-label">🔥 Streak</span>
           <div className="hero-stat">{streak}</div>
           <span className="hero-sub">{streak === 1 ? 'deň v rade' : 'dní v rade'}</span>

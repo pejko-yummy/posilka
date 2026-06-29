@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { plans } from '../data/plans'
 import { useLocalStorage } from '../lib/useLocalStorage'
+import { photos } from '../data/images'
+
+const planPhotos = [photos.pushups, photos.gymGeneral]
 
 export default function Exercise() {
   const [selectedPlanId, setSelectedPlanId] = useLocalStorage('sixpack:selectedPlan', plans[0].id)
@@ -22,8 +25,13 @@ export default function Exercise() {
         {plans.map((p, i) => (
           <button
             key={p.id}
-            className={`hero-card ${i === 0 ? 'variant-primary' : 'variant-dark'}`}
-            style={{ border: p.id === selectedPlanId ? '2px solid rgba(255,255,255,0.6)' : 'none', textAlign: 'left', width: '100%' }}
+            className="hero-card has-photo"
+            style={{
+              backgroundImage: `url(${planPhotos[i % planPhotos.length]})`,
+              border: p.id === selectedPlanId ? '2px solid rgba(255,255,255,0.7)' : 'none',
+              textAlign: 'left',
+              width: '100%',
+            }}
             onClick={() => setSelectedPlanId(p.id)}
           >
             <span className="hero-label">{p.level}</span>

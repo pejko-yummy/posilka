@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { recipes, skStores } from '../data/recipes'
 import { useLocalStorage } from '../lib/useLocalStorage'
+import { foodPhotos } from '../data/images'
 
 const MEAL_TYPES = ['Všetko', 'Raňajky', 'Obed', 'Večera', 'Snack']
 
@@ -56,13 +57,15 @@ export default function Food() {
       <div className="grid">
         {filtered.map((recipe, i) => {
           const isOpen = openRecipeId === recipe.id
-          const variants = ['variant-primary', 'variant-cyan', 'variant-success', 'variant-dark']
-          const variant = variants[i % variants.length]
           return (
             <div
-              className={`hero-card ${variant}`}
+              className="hero-card has-photo"
               key={recipe.id}
-              style={{ gridColumn: isOpen ? '1 / -1' : 'auto', cursor: 'pointer' }}
+              style={{
+                backgroundImage: `url(${foodPhotos[i % foodPhotos.length]})`,
+                gridColumn: isOpen ? '1 / -1' : 'auto',
+                cursor: 'pointer',
+              }}
               onClick={() => setOpenRecipeId(isOpen ? null : recipe.id)}
             >
               <span className="hero-pill">{recipe.mealType}</span>
