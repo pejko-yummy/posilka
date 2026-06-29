@@ -343,3 +343,111 @@ button {
 .exercise-row:last-child {
   border-bottom: none;
 }
+
+/* Hero cards — photographic, dark, bold (Nixtio-inspired) */
+.hero-card {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 22px;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+  margin-bottom: 16px;
+  isolation: isolate;
+}
+
+.hero-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  filter: saturate(1.3);
+  z-index: -2;
+}
+
+.hero-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.55) 100%);
+  z-index: -1;
+}
+
+.hero-card.variant-primary {
+  background:
+    radial-gradient(circle at 90% -10%, rgba(255, 122, 61, 0.55) 0%, transparent 55%),
+    radial-gradient(circle at 0% 110%, rgba(255, 61, 110, 0.45) 0%, transparent 55%),
+    #1a0f14;
+}
+
+.hero-card.variant-cyan {
+  background:
+    radial-gradient(circle at 90% -10%, rgba(123, 47, 247, 0.5) 0%, transparent 55%),
+    radial-gradient(circle at 0% 110%, rgba(0, 217, 245, 0.45) 0%, transparent 55%),
+    #0c1420;
+}
+
+.hero-card.variant-success {
+  background:
+    radial-gradient(circle at 90% -10%, rgba(0, 217, 245, 0.45) 0%, transparent 55%),
+    radial-gradient(circle at 0% 110%, rgba(0, 245, 160, 0.45) 0%, transparent 55%),
+    #0a1a16;
+}
+
+.hero-card.variant-dark {
+  background:
+    radial-gradient(circle at 90% -10%, rgba(255, 61, 110, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 0% 110%, rgba(123, 47, 247, 0.25) 0%, transparent 50%),
+    #0c0c10;
+}
+
+.hero-card .hero-label {
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.hero-card .hero-stat {
+  position: relative;
+  z-index: 1;
+  font-size: 52px;
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.hero-card .hero-sub {
+  position: relative;
+  z-index: 1;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.hero-card .hero-pill {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(6px);
+  color: #fff;
+}
+
+.hero-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+}
+

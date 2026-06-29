@@ -45,8 +45,27 @@ export default function Dashboard() {
     <div>
       <h1 className="page-title">Ahoj! 👋</h1>
 
+      <div className="hero-row">
+        <div className="hero-card variant-cyan">
+          <span className="hero-label">Tvoje BMI</span>
+          {bmi ? (
+            <div>
+              <div className="hero-stat">{bmi.toFixed(1)}</div>
+              <span className="hero-pill" style={{ background: category.color, color: '#06241c' }}>{category.label}</span>
+            </div>
+          ) : (
+            <div className="hero-sub">Zadaj výšku a váhu nižšie</div>
+          )}
+        </div>
+        <div className="hero-card variant-success">
+          <span className="hero-label">🔥 Streak</span>
+          <div className="hero-stat">{streak}</div>
+          <span className="hero-sub">{streak === 1 ? 'deň v rade' : 'dní v rade'}</span>
+        </div>
+      </div>
+
       <div className="card">
-        <h2>Tvoje BMI</h2>
+        <h2>Údaje o tebe</h2>
         <div className="input-row">
           <label>Výška (cm)</label>
           <input
@@ -65,14 +84,6 @@ export default function Dashboard() {
             placeholder="napr. 85"
           />
         </div>
-        {bmi ? (
-          <div>
-            <div className="metric-number">{bmi.toFixed(1)}</div>
-            <span className="badge" style={{ background: category.color }}>{category.label}</span>
-          </div>
-        ) : (
-          <p className="muted">Zadaj výšku a váhu pre výpočet BMI.</p>
-        )}
       </div>
 
       <div className="card">
@@ -83,12 +94,7 @@ export default function Dashboard() {
             <span>{label}</span>
           </label>
         ))}
-      </div>
-
-      <div className="card">
-        <h2>🔥 Streak</h2>
-        <div className="metric-number">{streak} {streak === 1 ? 'deň' : 'dní'}</div>
-        <p className="muted">Pokračuj v rade a sleduj svoj progres v <Link to="/kalendar">kalendári</Link>.</p>
+        <p className="muted" style={{ marginTop: 10 }}>Sleduj svoj progres v <Link to="/kalendar">kalendári</Link>.</p>
       </div>
 
       <div className="grid">

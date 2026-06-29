@@ -18,25 +18,23 @@ export default function Exercise() {
     <div>
       <h1 className="page-title">Cvičebné plány</h1>
 
-      <div className="card">
-        <h2>Vyber si plán</h2>
-        {plans.map((p) => (
+      <div className="hero-row">
+        {plans.map((p, i) => (
           <button
             key={p.id}
-            className={`btn ${p.id === selectedPlanId ? '' : 'outline'}`}
-            style={{ marginBottom: 8 }}
+            className={`hero-card ${i === 0 ? 'variant-primary' : 'variant-dark'}`}
+            style={{ border: p.id === selectedPlanId ? '2px solid rgba(255,255,255,0.6)' : 'none', textAlign: 'left', width: '100%' }}
             onClick={() => setSelectedPlanId(p.id)}
           >
-            {p.name}
+            <span className="hero-label">{p.level}</span>
+            <div>
+              <div className="hero-stat" style={{ fontSize: 22 }}>{p.name}</div>
+              <span className="hero-sub">{p.durationWeeks} týždne · {p.daysPerWeek}x/týždeň</span>
+            </div>
           </button>
         ))}
-        <p className="muted" style={{ marginTop: 8 }}>{plan.description}</p>
-        <div style={{ marginTop: 8 }}>
-          <span className="tag">{plan.level}</span>
-          <span className="tag">{plan.durationWeeks} týždne</span>
-          <span className="tag">{plan.daysPerWeek}x/týždeň</span>
-        </div>
       </div>
+      <p className="muted" style={{ marginBottom: 16 }}>{plan.description}</p>
 
       {plan.days.map((day) => {
         const isOpen = openDay === day.dayNumber

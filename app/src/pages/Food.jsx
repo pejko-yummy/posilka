@@ -54,37 +54,40 @@ export default function Food() {
       </div>
 
       <div className="grid">
-        {filtered.map((recipe) => {
+        {filtered.map((recipe, i) => {
           const isOpen = openRecipeId === recipe.id
+          const variants = ['variant-primary', 'variant-cyan', 'variant-success', 'variant-dark']
+          const variant = variants[i % variants.length]
           return (
-            <div className="card" key={recipe.id} style={{ gridColumn: isOpen ? '1 / -1' : 'auto' }}>
-              <h2 onClick={() => setOpenRecipeId(isOpen ? null : recipe.id)} style={{ cursor: 'pointer' }}>
-                {recipe.name}
-              </h2>
+            <div
+              className={`hero-card ${variant}`}
+              key={recipe.id}
+              style={{ gridColumn: isOpen ? '1 / -1' : 'auto', cursor: 'pointer' }}
+              onClick={() => setOpenRecipeId(isOpen ? null : recipe.id)}
+            >
+              <span className="hero-pill">{recipe.mealType}</span>
               <div>
-                <span className="tag">{recipe.mealType}</span>
-                <span className="tag">{recipe.calories} kcal</span>
-                <span className="tag">{recipe.prepTimeMinutes} min</span>
+                <div className="hero-stat" style={{ fontSize: 30 }}>{recipe.calories} kcal</div>
+                <div className="hero-sub" style={{ fontWeight: 700, color: '#fff', marginTop: 2 }}>{recipe.name}</div>
+                <div className="hero-sub">B {recipe.protein}g · S {recipe.carbs}g · T {recipe.fat}g · {recipe.prepTimeMinutes} min</div>
               </div>
-              <p className="muted" style={{ marginTop: 8 }}>
-                B: {recipe.protein}g · S: {recipe.carbs}g · T: {recipe.fat}g
-              </p>
 
               {isOpen && (
-                <>
-                  <h3 style={{ marginTop: 14, marginBottom: 6, fontSize: 15 }}>Ingrediencie</h3>
+                <div onClick={(e) => e.stopPropagation()} style={{ cursor: 'default', marginTop: 10 }}>
+                  <h3 style={{ marginBottom: 6, fontSize: 15, color: '#fff' }}>Ingrediencie</h3>
                   <ul style={{ paddingLeft: 18, margin: 0 }}>
                     {recipe.ingredients.map((ing) => (
-                      <li key={ing.name} className="muted">
-                        {ing.amount} {ing.unit} {ing.name} <span className="tag">{skStores.join(', ')}</span>
+                      <li key={ing.name} className="hero-sub">
+                        {ing.amount} {ing.unit} {ing.name}
                       </li>
                     ))}
                   </ul>
+                  <p className="hero-sub" style={{ marginTop: 4 }}>Dostupné v: {skStores.join(', ')}</p>
 
-                  <h3 style={{ marginTop: 14, marginBottom: 6, fontSize: 15 }}>Postup</h3>
+                  <h3 style={{ marginTop: 14, marginBottom: 6, fontSize: 15, color: '#fff' }}>Postup</h3>
                   <ol style={{ paddingLeft: 18, margin: 0 }}>
-                    {recipe.steps.map((step, i) => (
-                      <li key={i} className="muted">{step}</li>
+                    {recipe.steps.map((step, j) => (
+                      <li key={j} className="hero-sub">{step}</li>
                     ))}
                   </ol>
 
@@ -94,7 +97,7 @@ export default function Food() {
                   <button className="btn secondary" style={{ marginTop: 8 }} onClick={() => addToShoppingList(recipe)}>
                     + Pridať do nákupného zoznamu
                   </button>
-                </>
+                </div>
               )}
             </div>
           )
