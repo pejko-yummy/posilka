@@ -6,8 +6,8 @@ export function calculateBmi(weightKg, heightCm) {
 
 export function bmiCategory(bmi) {
   if (bmi === null) return null
-  if (bmi < 18.5) return { label: 'Podváha', color: '#3498db' }
-  if (bmi < 25) return { label: 'Normálna váha', color: '#2ECC71' }
-  if (bmi < 30) return { label: 'Nadváha', color: '#FF6B35' }
-  return { label: 'Obezita', color: '#E74C3C' }
+  if (bmi < 18.5) return { label: 'Podváha', color: '#00d9f5' }
+  if (bmi < 25) return { label: 'Normálna váha', color: '#00f5a0' }
+  if (bmi < 30) return { label: 'Nadváha', color: '#ff7a3d' }
+  return { label: 'Obezita', color: '#ff4d6d' }
 }
