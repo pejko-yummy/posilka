@@ -1,5 +1,13 @@
 import { kosiceGyms } from '../data/gyms'
 
+function mapEmbedUrl(address) {
+  return `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`
+}
+
+function mapDirectionsUrl(address) {
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`
+}
+
 export default function Gyms() {
   const sorted = [...kosiceGyms].sort((a, b) => a.singleEntryPrice - b.singleEntryPrice)
 
@@ -23,7 +31,23 @@ export default function Gyms() {
             </div>
             <p className="muted" style={{ marginTop: 4 }}>{gym.address}</p>
             <p className="muted" style={{ marginTop: 8 }}>{gym.note}</p>
-            <a href={gym.website} target="_blank" rel="noreferrer" className="btn outline" style={{ marginTop: 12 }}>
+
+            <div style={{ marginTop: 12, borderRadius: 12, overflow: 'hidden', border: '1px solid var(--color-border)' }}>
+              <iframe
+                title={`Mapa - ${gym.name}`}
+                src={mapEmbedUrl(gym.address)}
+                width="100%"
+                height="160"
+                style={{ border: 0, display: 'block' }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+
+            <a href={mapDirectionsUrl(gym.address)} target="_blank" rel="noreferrer" className="btn secondary" style={{ marginTop: 10 }}>
+              🧭 Navigovať cez Google Maps
+            </a>
+            <a href={gym.website} target="_blank" rel="noreferrer" className="btn outline" style={{ marginTop: 8 }}>
               Cenník a viac info
             </a>
           </div>
