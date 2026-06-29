@@ -412,10 +412,8 @@ button {
 }
 
 .photo-rotator.hero-card.has-photo {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-color: #0c0c14;
+  background-size: cover;
+  background-position: center top;
   transition: background-image 0.4s ease;
 }
 
@@ -552,10 +550,8 @@ button {
 }
 
 .quote-card.photo-rotator {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-color: #0c0c14;
+  background-size: cover;
+  background-position: center top;
   transition: background-image 0.4s ease;
 }
 
