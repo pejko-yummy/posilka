@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom'
-import { Home, Dumbbell, Salad, Footprints, CalendarDays } from 'lucide-react'
+import { Home, Dumbbell, Salad, Footprints, CalendarDays, MapPin } from 'lucide-react'
 
 const links = [
   { to: '/', icon: Home, label: 'Domov' },
   { to: '/cvicenie', icon: Dumbbell, label: 'Cvičenie' },
   { to: '/jedlo', icon: Salad, label: 'Jedlo' },
   { to: '/sport', icon: Footprints, label: 'Šport' },
+  { to: '/fitka', icon: MapPin, label: 'Fitká' },
   { to: '/kalendar', icon: CalendarDays, label: 'Kalendár' },
 ]
 
