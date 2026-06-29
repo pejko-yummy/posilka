@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { recipes, skStores } from '../data/recipes'
 import { useLocalStorage } from '../lib/useLocalStorage'
 import { foodPhotos } from '../data/images'
+import { addRecipeToLog, removeEntryFromLog, getTodayLog } from '../lib/dailyLog'
 
 const MEAL_TYPES = ['Všetko', 'Raňajky', 'Obed', 'Večera', 'Snack']
 
@@ -9,8 +10,18 @@ export default function Food() {
   const [filter, setFilter] = useState('Všetko')
   const [openRecipeId, setOpenRecipeId] = useState(null)
   const [shoppingList, setShoppingList] = useLocalStorage('sixpack:shoppingList', {})
+  const [dailyLog, setDailyLog] = useLocalStorage('sixpack:dailyLog', {})
 
   const filtered = filter === 'Všetko' ? recipes : recipes.filter((r) => r.mealType === filter)
+  const todayLog = getTodayLog(dailyLog)
+
+  function logMeal(recipe) {
+    setDailyLog(addRecipeToLog(dailyLog, recipe))
+  }
+
+  function removeLoggedEntry(entryId) {
+    setDailyLog(removeEntryFromLog(dailyLog, entryId))
+  }
 
   function addToShoppingList(recipe) {
     const next = { ...shoppingList }
@@ -40,6 +51,31 @@ export default function Food() {
   return (
     <div>
       <h1 className="page-title">Jedlo a recepty</h1>
+
+      <div className="hero-card variant-cyan">
+        <span className="hero-label">📊 Dnešný príjem</span>
+        <div>
+          <div className="hero-stat" style={{ fontSize: 38 }}>{Math.round(todayLog.totals.calories)} kcal</div>
+          <span className="hero-sub">
+            B {Math.round(todayLog.totals.protein)}g · S {Math.round(todayLog.totals.carbs)}g · T {Math.round(todayLog.totals.fat)}g
+          </span>
+        </div>
+        {todayLog.entries.length > 0 && (
+          <div style={{ position: 'relative', zIndex: 1, marginTop: 10 }}>
+            {todayLog.entries.map((entry) => (
+              <div key={entry.id} className="hero-sub" style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 0' }}>
+                <span>{entry.name} ({entry.calories} kcal)</span>
+                <button
+                  onClick={() => removeLoggedEntry(entry.id)}
+                  style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', fontSize: 13 }}
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
 
       <div className="card">
         {MEAL_TYPES.map((type) => (
@@ -99,6 +135,9 @@ export default function Food() {
                   </a>
                   <button className="btn secondary" style={{ marginTop: 8 }} onClick={() => addToShoppingList(recipe)}>
                     + Pridať do nákupného zoznamu
+                  </button>
+                  <button className="btn outline" style={{ marginTop: 8 }} onClick={() => logMeal(recipe)}>
+                    📊 Pridať do denného príjmu
                   </button>
                 </div>
               )}

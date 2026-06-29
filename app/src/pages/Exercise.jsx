@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { plans } from '../data/plans'
 import { useLocalStorage } from '../lib/useLocalStorage'
 import { photos } from '../data/images'
+import { exerciseVideos } from '../data/exerciseVideos'
 
 const planPhotos = [photos.pushups, photos.gymGeneral]
 
@@ -61,6 +62,20 @@ export default function Exercise() {
                     <strong>{ex.name}</strong> — {ex.sets}x{ex.reps}, pauza {ex.restSeconds}s
                     <br />
                     <span className="muted">{ex.description}</span>
+                    {exerciseVideos[ex.name] && (
+                      <>
+                        <br />
+                        <a
+                          href={exerciseVideos[ex.name]}
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          style={{ fontSize: 13, fontWeight: 700 }}
+                        >
+                          ▶ Video ako na to
+                        </a>
+                      </>
+                    )}
                   </span>
                 </label>
               )

@@ -10,9 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app-shell">
-        <header className="app-header">
-          <span className="brand">Sixpack 💪</span>
-        </header>
+        <NavBar />
         <main className="app-main">
           <Routes>
             <Route path="/" element={<Dashboard />} />
@@ -22,7 +20,6 @@ function App() {
             <Route path="/kalendar" element={<Calendar />} />
           </Routes>
         </main>
-        <NavBar />
       </div>
     </BrowserRouter>
   )

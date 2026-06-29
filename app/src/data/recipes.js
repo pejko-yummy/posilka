@@ -10,7 +10,7 @@ export const recipes = [
     carbs: 55,
     fat: 11,
     prepTimeMinutes: 10,
-    videoUrl: 'https://www.youtube.com/results?search_query=ovsena+kasa+recept',
+    videoUrl: 'https://www.youtube.com/watch?v=MSxBxQjrLeM',
     ingredients: [
       { name: 'Ovsené vločky', amount: 60, unit: 'g', storeCategory: 'pekáreň/cereálie' },
       { name: 'Mlieko (alebo rastlinné)', amount: 250, unit: 'ml', storeCategory: 'mliečne' },
@@ -33,7 +33,7 @@ export const recipes = [
     carbs: 30,
     fat: 10,
     prepTimeMinutes: 8,
-    videoUrl: 'https://www.youtube.com/results?search_query=tvarohova+namaz+recept',
+    videoUrl: 'https://www.youtube.com/watch?v=SRvG89iX5YI',
     ingredients: [
       { name: 'Tvaroh', amount: 150, unit: 'g', storeCategory: 'mliečne' },
       { name: 'Celozrnný chlieb', amount: 2, unit: 'plátky', storeCategory: 'pekáreň' },
@@ -56,7 +56,7 @@ export const recipes = [
     carbs: 25,
     fat: 15,
     prepTimeMinutes: 30,
-    videoUrl: 'https://www.youtube.com/results?search_query=kuracie+prsia+pecena+zelenina+recept',
+    videoUrl: 'https://www.youtube.com/watch?v=ehawGCPS34I',
     ingredients: [
       { name: 'Kuracie prsia', amount: 200, unit: 'g', storeCategory: 'mäso' },
       { name: 'Cuketa', amount: 1, unit: 'ks', storeCategory: 'zelenina' },
@@ -80,7 +80,7 @@ export const recipes = [
     carbs: 50,
     fat: 16,
     prepTimeMinutes: 25,
-    videoUrl: 'https://www.youtube.com/results?search_query=quinoa+salat+cicer+recept',
+    videoUrl: 'https://www.youtube.com/watch?v=L1uPqIp2CiQ',
     ingredients: [
       { name: 'Quinoa', amount: 80, unit: 'g', storeCategory: 'strukoviny/obilniny' },
       { name: 'Cícer (varený)', amount: 150, unit: 'g', storeCategory: 'strukoviny' },
@@ -104,7 +104,7 @@ export const recipes = [
     carbs: 15,
     fat: 28,
     prepTimeMinutes: 25,
-    videoUrl: 'https://www.youtube.com/results?search_query=peceny+losos+brokolica+recept',
+    videoUrl: 'https://www.youtube.com/watch?v=4Lryvc6AF_I',
     ingredients: [
       { name: 'Filet z lososa', amount: 180, unit: 'g', storeCategory: 'ryby' },
       { name: 'Brokolica', amount: 200, unit: 'g', storeCategory: 'zelenina' },
@@ -127,7 +127,7 @@ export const recipes = [
     carbs: 35,
     fat: 18,
     prepTimeMinutes: 30,
-    videoUrl: 'https://www.youtube.com/results?search_query=zeleninove+kari+tofu+recept',
+    videoUrl: 'https://www.youtube.com/watch?v=tIG-t4v1cHA',
     ingredients: [
       { name: 'Tofu', amount: 150, unit: 'g', storeCategory: 'rastlinné alternatívy' },
       { name: 'Kokosové mlieko', amount: 200, unit: 'ml', storeCategory: 'medzinárodná kuchyňa' },
@@ -151,7 +151,7 @@ export const recipes = [
     carbs: 20,
     fat: 9,
     prepTimeMinutes: 5,
-    videoUrl: 'https://www.youtube.com/results?search_query=grecky+jogurt+snack+recept',
+    videoUrl: 'https://www.youtube.com/watch?v=qkSjJ8Oy6BU',
     ingredients: [
       { name: 'Grécky jogurt', amount: 150, unit: 'g', storeCategory: 'mliečne' },
       { name: 'Vlašské orechy', amount: 15, unit: 'g', storeCategory: 'orechy' },
@@ -172,7 +172,7 @@ export const recipes = [
     carbs: 30,
     fat: 6,
     prepTimeMinutes: 5,
-    videoUrl: 'https://www.youtube.com/results?search_query=proteinovy+shake+recept',
+    videoUrl: 'https://www.youtube.com/watch?v=JZ-17EcG1sc',
     ingredients: [
       { name: 'Proteínový prášok', amount: 1, unit: 'odmerka', storeCategory: 'doplnky výživy' },
       { name: 'Mlieko', amount: 250, unit: 'ml', storeCategory: 'mliečne' },

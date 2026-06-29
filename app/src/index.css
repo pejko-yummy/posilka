@@ -33,12 +33,32 @@
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at 10% 0%, rgba(123, 47, 247, 0.18) 0%, transparent 45%),
-    radial-gradient(circle at 90% 20%, rgba(255, 61, 110, 0.15) 0%, transparent 45%),
-    radial-gradient(circle at 50% 100%, rgba(0, 245, 160, 0.1) 0%, transparent 50%),
-    var(--color-bg);
   min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1546483875-ad9014c88eba?auto=format&fit=crop&w=1600&q=70');
+  background-size: cover;
+  background-position: center 20%;
+  background-attachment: fixed;
+  filter: saturate(1.1);
+  z-index: -3;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(123, 47, 247, 0.25) 0%, transparent 45%),
+    radial-gradient(circle at 90% 20%, rgba(255, 61, 110, 0.2) 0%, transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(0, 245, 160, 0.12) 0%, transparent 50%),
+    rgba(8, 8, 14, 0.86);
+  z-index: -2;
 }
 
 #root {
@@ -70,29 +90,52 @@ button {
 .app-shell {
   flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
-.app-header {
-  padding: 18px 20px;
-  background: rgba(10, 10, 18, 0.7);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--color-border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
+.sidebar {
+  position: fixed;
   top: 0;
+  left: 0;
+  bottom: 0;
+  width: 220px;
+  background: rgba(12, 12, 20, 0.75);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 14px;
+  gap: 4px;
   z-index: 20;
 }
 
-.app-header .brand {
-  font-size: 22px;
+.sidebar-brand {
+  font-size: 20px;
   font-weight: 900;
   background: var(--grad-primary);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  padding: 0 10px;
+  margin-bottom: 24px;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.2s, background 0.2s;
+}
+
+.sidebar a.active {
+  color: #fff;
+  background: var(--grad-primary);
+  box-shadow: var(--glow-primary);
 }
 
 .app-main {
@@ -100,50 +143,34 @@ button {
   width: 100%;
   max-width: 760px;
   margin: 0 auto;
-  padding: 24px 16px 110px;
+  padding: 24px 16px 60px;
+  margin-left: 220px;
 }
 
-.nav-bar {
-  position: fixed;
-  bottom: 14px;
-  left: 14px;
-  right: 14px;
-  max-width: 600px;
-  margin: 0 auto;
-  background: rgba(17, 17, 28, 0.85);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--color-border);
-  border-radius: 22px;
-  display: flex;
-  justify-content: space-around;
-  padding: 8px 6px;
-  z-index: 10;
-  box-shadow: var(--shadow);
-}
+@media (max-width: 720px) {
+  .sidebar {
+    width: 76px;
+    padding: 18px 8px;
+    align-items: center;
+  }
 
-.nav-bar a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  font-size: 11px;
-  color: var(--color-text-muted);
-  padding: 8px 6px;
-  border-radius: 14px;
-  flex: 1;
-  text-align: center;
-  transition: color 0.2s, background 0.2s;
-}
+  .sidebar-brand {
+    display: none;
+  }
 
-.nav-bar a.active {
-  color: #fff;
-  font-weight: 700;
-  background: var(--grad-primary);
-  box-shadow: var(--glow-primary);
-}
+  .sidebar a {
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 4px;
+    font-size: 10px;
+    width: 100%;
+    text-align: center;
+  }
 
-.nav-icon {
-  font-size: 20px;
+  .app-main {
+    margin-left: 76px;
+    max-width: none;
+  }
 }
 
 .card {
@@ -383,6 +410,23 @@ button {
 
 .hero-card.has-photo::after {
   background: linear-gradient(180deg, rgba(10, 8, 12, 0.35) 0%, rgba(8, 6, 10, 0.92) 100%);
+}
+
+.sport-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.sport-card::before {
+  transition: transform 6s ease;
+}
+
+.sport-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(255, 61, 110, 0.25);
+}
+
+.sport-card:hover::before {
+  transform: scale(1.08);
 }
 
 .hero-card.variant-primary {

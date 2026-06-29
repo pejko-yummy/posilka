@@ -11,7 +11,8 @@ const links = [
 
 export default function NavBar() {
   return (
-    <nav className="nav-bar">
+    <nav className="sidebar">
+      <div className="sidebar-brand">Sixpack 💪</div>
       {links.map((link) => {
         const Icon = link.icon
         return (
@@ -21,7 +22,7 @@ export default function NavBar() {
             end
             className={({ isActive }) => (isActive ? 'active' : '')}
           >
-            <Icon className="nav-icon" size={20} strokeWidth={2.2} />
+            <Icon size={20} strokeWidth={2.2} />
             <span>{link.label}</span>
           </NavLink>
         )

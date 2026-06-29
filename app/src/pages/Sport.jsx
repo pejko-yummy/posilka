@@ -1,5 +1,9 @@
 import { sports } from '../data/sports'
 
+function unsplash(id, width = 800) {
+  return `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${width}&q=80`
+}
+
 export default function Sport() {
   return (
     <div>
@@ -9,16 +13,21 @@ export default function Sport() {
       </p>
       <div className="grid">
         {sports.map((sport) => (
-          <div className="card" key={sport.id}>
-            <h2>{sport.name}</h2>
-            <div className="metric-number" style={{ fontSize: 28, color: 'var(--color-primary)' }}>
-              ~{sport.caloriesPerHour} kcal/h
+          <div
+            className="hero-card has-photo sport-card"
+            key={sport.id}
+            style={{ backgroundImage: `url(${unsplash(sport.photoId)})` }}
+          >
+            <span className="hero-pill">{sport.indoorOutdoor}</span>
+            <div>
+              <div className="hero-stat" style={{ fontSize: 26 }}>~{sport.caloriesPerHour} kcal/h</div>
+              <div className="hero-sub" style={{ fontWeight: 700, color: '#fff', marginTop: 2 }}>{sport.name}</div>
+              <div className="hero-sub">{sport.equipmentNeeded}</div>
+              <p className="hero-sub" style={{ marginTop: 6 }}>{sport.description}</p>
+              <a href={sport.videoUrl} target="_blank" rel="noreferrer" className="btn outline" style={{ marginTop: 10 }}>
+                ▶ Video návod
+              </a>
             </div>
-            <div style={{ marginTop: 8 }}>
-              <span className="tag">{sport.indoorOutdoor}</span>
-              <span className="tag">{sport.equipmentNeeded}</span>
-            </div>
-            <p className="muted" style={{ marginTop: 8 }}>{sport.description}</p>
           </div>
         ))}
       </div>

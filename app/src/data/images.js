@@ -42,6 +42,10 @@ export const motivationalQuotes = [
   'Najťažší krok je ten prvý. Spravil si ho.',
   'Tvoje jediné porovnanie je ty z minulého týždňa.',
   'Disciplína je most medzi cieľmi a úspechom.',
+  'Si silnejšia, než si myslíš.',
+  'Dnešné úsilie je zajtrajšia sila.',
+  'Nevzdávaj sa. Začiatky sú vždy najťažšie.',
+  'Tvoje telo počuje všetko, čo si myseľ hovorí. Buď k sebe milá.',
 ]
 
 export function quoteOfTheDay() {
