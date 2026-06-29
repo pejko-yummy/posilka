@@ -1,6 +1,7 @@
 import { useLocalStorage } from '../lib/useLocalStorage'
 import { computeStreak } from '../lib/checklist'
-import { photos } from '../data/images'
+import { calendarPhotos } from '../data/images'
+import PhotoRotator from '../components/PhotoRotator'
 
 const MOTIVATIONAL = {
   0: 'Každý veľký progres začína prvým dňom. Dnes je ten deň! 💪',
@@ -32,13 +33,13 @@ export default function Calendar() {
     <div>
       <h1 className="page-title">Kalendár progresu</h1>
 
-      <div className="hero-card has-photo" style={{ backgroundImage: `url(${photos.stretching})` }}>
+      <PhotoRotator images={calendarPhotos} className="hero-card has-photo">
         <span className="hero-label">🔥 Aktuálny streak</span>
         <div>
           <div className="hero-stat">{streak}</div>
           <span className="hero-sub">{streak === 1 ? 'deň' : 'dní'} — {getMotivation(streak)}</span>
         </div>
-      </div>
+      </PhotoRotator>
 
       <div className="card">
         <h2 style={{ textTransform: 'capitalize' }}>{monthName}</h2>

@@ -3,6 +3,7 @@ import { recipes, skStores } from '../data/recipes'
 import { useLocalStorage } from '../lib/useLocalStorage'
 import { foodPhotos } from '../data/images'
 import { addRecipeToLog, removeEntryFromLog, getTodayLog } from '../lib/dailyLog'
+import PhotoRotator from '../components/PhotoRotator'
 
 const MEAL_TYPES = ['Všetko', 'Raňajky', 'Obed', 'Večera', 'Snack']
 
@@ -93,12 +94,13 @@ export default function Food() {
       <div className="grid">
         {filtered.map((recipe, i) => {
           const isOpen = openRecipeId === recipe.id
+          const cardPhotos = [0, 1, 2].map((offset) => foodPhotos[(i + offset) % foodPhotos.length])
           return (
-            <div
+            <PhotoRotator
+              images={cardPhotos}
               className="hero-card has-photo"
               key={recipe.id}
               style={{
-                backgroundImage: `url(${foodPhotos[i % foodPhotos.length]})`,
                 gridColumn: isOpen ? '1 / -1' : 'auto',
                 cursor: 'pointer',
               }}
@@ -141,7 +143,7 @@ export default function Food() {
                   </button>
                 </div>
               )}
-            </div>
+            </PhotoRotator>
           )
         })}
       </div>

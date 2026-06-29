@@ -1,4 +1,6 @@
 import { kosiceGyms } from '../data/gyms'
+import { gymsPhotos } from '../data/images'
+import PhotoRotator from '../components/PhotoRotator'
 
 function mapEmbedUrl(address) {
   return `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`
@@ -14,6 +16,9 @@ export default function Gyms() {
   return (
     <div>
       <h1 className="page-title">Fitká v Košiciach</h1>
+      <PhotoRotator images={gymsPhotos} className="hero-card has-photo">
+        <span className="hero-label">💪 Fitness v Košiciach</span>
+      </PhotoRotator>
       <p className="muted" style={{ marginBottom: 16 }}>
         Jednorazové vstupy zoradené od najlevnejšieho. Ceny sú orientačné, overené z webov fitiek — pred návštevou si over aktuálny cenník.
       </p>

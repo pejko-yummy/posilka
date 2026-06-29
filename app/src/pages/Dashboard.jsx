@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react'
 import { useLocalStorage } from '../lib/useLocalStorage'
 import { calculateBmi, bmiCategory } from '../lib/bmi'
 import { isDayDone, computeStreak } from '../lib/checklist'
-import { photos, motivationalQuotes } from '../data/images'
+import { motivationalQuotes, dashboardPhotos } from '../data/images'
 import { Link } from 'react-router-dom'
+import PhotoRotator from '../components/PhotoRotator'
 
 export default function Dashboard() {
   const [profile, setProfile] = useLocalStorage('sixpack:profile', { heightCm: '', weightKg: '', setupDone: false })
@@ -70,15 +71,15 @@ export default function Dashboard() {
     <div>
       <h1 className="page-title">Ahoj! 👋</h1>
 
-      <div className="quote-card" style={{ backgroundImage: `url(${photos.groupWorkout})` }}>
+      <PhotoRotator images={dashboardPhotos} className="quote-card">
         <div>
           <blockquote>"{motivationalQuotes[quoteIndex]}"</blockquote>
           <cite>Motivácia na dnes</cite>
         </div>
-      </div>
+      </PhotoRotator>
 
       <div className="hero-row">
-        <div className="hero-card has-photo" style={{ backgroundImage: `url(${photos.weights})` }}>
+        <PhotoRotator images={dashboardPhotos} className="hero-card has-photo">
           <span className="hero-label">Tvoje BMI</span>
           {bmi ? (
             <div>
@@ -88,12 +89,12 @@ export default function Dashboard() {
           ) : (
             <div className="hero-sub">Zadaj výšku a váhu nižšie</div>
           )}
-        </div>
-        <div className="hero-card has-photo" style={{ backgroundImage: `url(${photos.running})` }}>
+        </PhotoRotator>
+        <PhotoRotator images={dashboardPhotos} className="hero-card has-photo">
           <span className="hero-label">🔥 Streak</span>
           <div className="hero-stat">{streak}</div>
           <span className="hero-sub">{streak === 1 ? 'deň v rade' : 'dní v rade'}</span>
-        </div>
+        </PhotoRotator>
       </div>
 
       <div className="card">

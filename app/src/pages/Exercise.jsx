@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import { plans } from '../data/plans'
 import { useLocalStorage } from '../lib/useLocalStorage'
-import { photos } from '../data/images'
+import { exercisePhotos } from '../data/images'
 import { exerciseVideos } from '../data/exerciseVideos'
-
-const planPhotos = [photos.pushups, photos.gymGeneral]
+import PhotoRotator from '../components/PhotoRotator'
 
 export default function Exercise() {
   const [selectedPlanId, setSelectedPlanId] = useLocalStorage('sixpack:selectedPlan', plans[0].id)
@@ -23,24 +22,23 @@ export default function Exercise() {
       <h1 className="page-title">Cvičebné plány</h1>
 
       <div className="hero-row">
-        {plans.map((p, i) => (
-          <button
+        {plans.map((p) => (
+          <PhotoRotator
             key={p.id}
-            className="hero-card has-photo"
-            style={{
-              backgroundImage: `url(${planPhotos[i % planPhotos.length]})`,
-              border: p.id === selectedPlanId ? '2px solid rgba(255,255,255,0.7)' : 'none',
-              textAlign: 'left',
-              width: '100%',
-            }}
-            onClick={() => setSelectedPlanId(p.id)}
+            images={exercisePhotos}
+            className={`hero-card has-photo plan-card-btn ${p.id === selectedPlanId ? 'plan-card-active' : ''}`}
           >
-            <span className="hero-label">{p.level}</span>
-            <div>
-              <div className="hero-stat" style={{ fontSize: 22 }}>{p.name}</div>
-              <span className="hero-sub">{p.durationWeeks} týždne · {p.daysPerWeek}x/týždeň</span>
-            </div>
-          </button>
+            <button
+              className="plan-card-button"
+              onClick={() => setSelectedPlanId(p.id)}
+            >
+              <span className="hero-label">{p.level}</span>
+              <div>
+                <div className="hero-stat" style={{ fontSize: 22 }}>{p.name}</div>
+                <span className="hero-sub">{p.durationWeeks} týždne · {p.daysPerWeek}x/týždeň</span>
+              </div>
+            </button>
+          </PhotoRotator>
         ))}
       </div>
       <p className="muted" style={{ marginBottom: 16 }}>{plan.description}</p>
